@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+import React, { useEffect } from 'react'
 import { useEditor } from '@tiptap/react';
 type Props = {
   editor: any
@@ -38,6 +39,7 @@ import {
 
 } from "react-icons/bs";
 import { LuSeparatorHorizontal, LuRemoveFormatting } from "react-icons/lu";
+import { languages } from './codeblock_config';
 
 const MenuBar = ({editor}: Props) => {
   if(!editor) return null;
@@ -61,7 +63,7 @@ const MenuBar = ({editor}: Props) => {
           .insertContent([
             {
               type: "resizableImage",
-              attrs: { src: base64, width: "100px", height: "auto" },
+              attrs: { src: base64 },
             },
             {
               type: "paragraph",
@@ -90,31 +92,39 @@ const MenuBar = ({editor}: Props) => {
   const setLanguage = (language: string) => {
     editor.chain().updateAttributes("codeBlock", { language }).run();
   };
+
+  // useEffect(() => {
+  //   setLanguage("plaintext");
+  // }, []);
   
 
   return (
-    <div className="menubar flex flex-row flex-wrap">
+    <div className="menubar flex flex-row flex-wrap justify-center w-full">
       <div className="button-group">
         <br />
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleBold().run()}
           className={editor.isActive('bold') ? 'is-active' : ''}
         >
           <FaBold/>
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleItalic().run()}
           className={editor.isActive('italic') ? 'is-active' : ''}
         >
           <FaItalic/>
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleUnderline().run()}
           className={editor.isActive('underline') ? 'is-active' : ''}
         >
           <FaUnderline/>
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleStrike().run()}
           className={editor.isActive('strike') ? 'is-active' : ''}
         >
@@ -145,6 +155,7 @@ const MenuBar = ({editor}: Props) => {
         </select>
 
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleCode().run()}
           className={editor.isActive('code') ? 'is-active' : ''}
         >
@@ -152,12 +163,14 @@ const MenuBar = ({editor}: Props) => {
         </button>
 
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           className={editor.isActive('bulletList') ? 'is-active' : ''}
         >
           <GoListUnordered/>
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
           className={editor.isActive('orderedList') ? 'is-active' : ''}
         >
@@ -165,22 +178,32 @@ const MenuBar = ({editor}: Props) => {
         </button>
 
         <button
-          onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+          type="button"
+          onClick={() => {
+            editor.chain().focus().toggleCodeBlock().run()
+            if(!editor.getAttributes("codeBlock").language) {
+              setLanguage("plaintext")
+            }
+          }}
           className={editor.isActive('codeBlock') ? 'is-active' : ''}
         >
           <RiCodeBlock/>
         </button>
         <select
           onChange={(e) => setLanguage(e.target.value)}
-          value={editor.getAttributes("codeBlock").language || "javascript"}
+          value={editor.getAttributes("codeBlock").language || "plaintext"}
         >
-          <option value="js">JavaScript</option>
-          <option value="html">HTML</option>
-          <option value="css">CSS</option>
-          <option value="python">Python</option>
+          {
+            languages.map((language) => (
+              <option key={language} value={language}>
+                {language.toUpperCase()}
+              </option>
+            ))
+          }
           {/* Add more languages as needed */}
         </select>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
           className={editor.isActive('blockquote') ? 'is-active' : ''}
         >
@@ -194,45 +217,67 @@ const MenuBar = ({editor}: Props) => {
       <div className="button-group">
         
         <button
+          type="button"
           onClick={() => editor.chain().focus().setTextAlign("left").run()}
           className={editor.isActive({ textAlign: "left" }) ? "is-active" : ""}
         >
           <FaAlignLeft/>
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().setTextAlign("center").run()}
           className={editor.isActive({ textAlign: "center" }) ? "is-active" : ""}
         >
           <FaAlignCenter/>
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().setTextAlign("right").run()}
           className={editor.isActive({ textAlign: "right" }) ? "is-active" : ""}
         >
           <FaAlignRight/>
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().setTextAlign("justify").run()}
           className={editor.isActive({ textAlign: "justify" }) ? "is-active" : ""}
         >
           <FaAlignJustify/>
         </button>
       </div>
-        <button onClick={() => editor.chain().focus().setHorizontalRule().run()}>
-          <LuSeparatorHorizontal/>
-        </button>
-        <button onClick={() => editor.chain().focus().setHardBreak().run()}>
-          <BsFillFileBreakFill/>
-        </button>
-        <button onClick={() => editor.chain().focus().undo().run()}>
-          <FaUndo/>
-        </button>
-        <button onClick={() => editor.chain().focus().redo().run()}>
-          <FaRedo/>
-        </button>
-        <button onClick={addImage}>
+      <div className="button-group">
+        <button 
+          type="button"
+          onClick={addImage}
+        >
           <FaImage/>
         </button>
+        <button 
+          type="button"
+          onClick={() => editor.chain().focus().setHorizontalRule().run()}
+        >
+          <LuSeparatorHorizontal/>
+        </button>
+        <button 
+          type="button"
+          onClick={() => editor.chain().focus().setHardBreak().run()}
+        >
+          <BsFillFileBreakFill/>
+        </button>
+        <button 
+          type="button"
+          onClick={() => editor.chain().focus().undo().run()}
+        >
+          <FaUndo/>
+        </button>
+        <button 
+          type="button"
+          onClick={() => editor.chain().focus().redo().run()}
+        >
+          <FaRedo/>
+        </button>
+        
+      </div>
 
     </div>
   )

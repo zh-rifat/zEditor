@@ -1,0 +1,164 @@
+/* zrichtext-viewer Container */
+.zrichtext-viewer {
+  max-width: 100%;
+  padding: 1rem;
+  /* background-color: #1e1e1e; 
+  color: #ffffff;  */
+  border: 1px solid #333; /* Border color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  /* font-family: "Consolas", "Monaco", "Courier New", monospace;  */
+  
+  line-height: 1.6; /* Improve readability */
+}
+
+/* Paragraphs */
+.zrichtext-viewer p {
+  margin: 1rem 0; /* Add spacing between paragraphs */
+  font-size: 1rem; /* Default font size */
+}
+
+/* Headings */
+.zrichtext-viewer h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1.5rem 0;
+}
+
+.zrichtext-viewer h2 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin: 1.25rem 0;
+}
+
+.zrichtext-viewer h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.zrichtext-viewer h4 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 0.75rem 0;
+}
+
+.zrichtext-viewer h5 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.zrichtext-viewer h6 {
+  font-size: 0.875rem;
+  font-weight: bold;
+  margin: 0.25rem 0;
+}
+
+/* Bold Text */
+.zrichtext-viewer strong,
+.zrichtext-viewer b {
+  font-weight: bold;
+}
+
+/* Italic Text */
+.zrichtext-viewer em,
+.zrichtext-viewer i {
+  font-style: italic;
+}
+
+/* Links */
+.zrichtext-viewer a {
+  color: #569cd6; /* Blue for links */
+  text-decoration: underline; /* Underline links */
+}
+
+.zrichtext-viewer a:hover {
+  color: #9cdcfe; /* Light blue on hover */
+}
+
+/* Lists */
+.zrichtext-viewer ul,
+.zrichtext-viewer ol {
+  margin: 1rem 0;
+  padding-left: 2rem; /* Indent lists */
+}
+
+.zrichtext-viewer li {
+  margin: 0.5rem 0;
+}
+
+/* Code Blocks */
+.zrichtext-viewer pre {
+  background-color: #2d2d2d; /* Dark background for code blocks */
+  color: #ffffff; /* Light text color for code blocks */
+  padding: 1rem; /* Padding inside code blocks */
+  border-radius: 8px; /* Rounded corners for code blocks */
+  overflow-x: auto; /* Horizontal scroll for long lines */
+  margin: 1rem 0; /* Margin around code blocks */
+  font-size: 0.9em; /* Slightly smaller font size for code blocks */
+  line-height: 1.5; /* Line height for better readability */
+}
+
+.zrichtext-viewer pre code {
+  background-color: transparent; /* Remove background for code inside pre */
+  color: inherit; /* Inherit text color from pre */
+  padding: 0; /* Remove padding for code inside pre */
+  border-radius: 0; /* Remove border radius for code inside pre */
+  font-size: inherit; /* Inherit font size from pre */
+}
+
+/* Inline Code */
+.zrichtext-viewer code {
+  background-color: #2d2d2d; /* Slightly lighter background for inline code */
+  color: #dcdcaa; /* Light yellow color for inline code */
+  padding: 0.2em 0.4em; /* Padding for inline code */
+  border-radius: 4px; /* Rounded corners for inline code */
+  font-size: 0.9em; /* Slightly smaller font size for inline code */
+}
+
+/* Blockquotes */
+.zrichtext-viewer blockquote {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  border-left: 4px solid #569cd6; /* Blue border for blockquotes */
+  background-color: #2d2d2d; /* Dark background for blockquotes */
+  color: #ffffff; /* Light text color for blockquotes */
+  font-style: italic; /* Italicize blockquotes */
+}
+
+/* Horizontal Rule */
+.zrichtext-viewer hr {
+  border: 0;
+  height: 1px;
+  background-color: #333; /* Dark gray for horizontal rule */
+  margin: 1.5rem 0;
+}
+
+/* Images */
+.zrichtext-viewer img {
+  max-width: 100%; /* Ensure images don't overflow */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px; /* Rounded corners for images */
+  margin: 1rem 0; /* Add spacing around images */
+}
+
+/* Tables */
+.zrichtext-viewer table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.zrichtext-viewer th,
+.zrichtext-viewer td {
+  padding: 0.5rem;
+  border: 1px solid #333; /* Dark gray borders for table cells */
+  text-align: left;
+}
+
+.zrichtext-viewer th {
+  background-color: #2d2d2d; /* Dark background for table headers */
+  color: #ffffff; /* Light text color for table headers */
+  font-weight: bold;
+}

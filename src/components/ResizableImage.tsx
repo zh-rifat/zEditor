@@ -11,7 +11,7 @@ const ResizableImage = Node.create({
     return {
       src: { default: null },
       alt: { default: null },
-      width: { default: "100%" },
+      width: { default: "80%" },
       height: { default: "auto" },
     };
   },
