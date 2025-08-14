@@ -1,0 +1,35 @@
+# .cpanel.yml - For Next.js deployment automation in cPanel
+
+deployment:
+  tasks:
+    - export DEPLOYMENT_SOURCE=./
+
+    # Install dependencies
+    - /bin/npm install
+
+    # Build Next.js application
+    - /bin/npm run build
+
+    # Set proper permissions
+    - /bin/chmod -R 755 .next
+    - /bin/chmod 755 server.js
+
+    # Clean up old deployment if needed
+    - /bin/rm -rf ~/nodevenv/[YOUR_APP_DIRECTORY]/[VERSION]/lib/node_modules
+
+    # Restart Node.js application (if managed via cPanel)
+    - /usr/local/cpanel/3rdparty/bin/node_manager restart [YOUR_APP_ID]
+
+# Configure cPanel Git Version Control
+git:
+  enabled: 1
+  branch: main  # or your preferred branch
+  repo: [YOUR_GIT_REPOSITORY_URL]
+  deployhooks:
+    post-receive:
+      - source ~/.bashrc
+      - cd $HOME/repositories/zEditor
+      - git pull origin main
+      - /bin/npm install --production
+      - /bin/npm run build
+      - /usr/local/cpanel/3rdparty/bin/node_manager restart [YOUR_APP_ID]
